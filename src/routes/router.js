@@ -1,16 +1,19 @@
 const express = require("express");
-const { cadastrarUsuario } = require("../controller/usuarios/cadastroUsuario");
-const { login } = require("../controller/usuarios/loginUsuario");
-const { cadastrarTarefa } = require("../controller/todos/registerTask");
-const verificaLogin = require('../middleware/verificarLogin')
 const router = express.Router();
 
-router.post('/cadastro', cadastrarUsuario)
-router.post('/login', login)
+const cadastrarUsuario = require("../controller/usuarios/cadastroUsuario");
+const login = require("../controller/usuarios/loginUsuario");
+const cadastrarTarefa = require("../controller/todos/registerTask");
+const verificaLogin = require("../middleware/verificarLogin");
 
-router.use(verificaLogin)
+router.post("/cadastro", cadastrarUsuario);
+router.post("/login", login);
 
-router.post('/cadastrarTarefa', cadastrarTarefa)
+router.use(verificaLogin);
 
+router.post("/cadastrarTarefa", cadastrarTarefa);
+// router.put("/atualizarTarefa/:id", atualizarTarefa)
+// router.get("/listarTarefa", listarTarefa)
+// router.delete("/deletarTarefa/:id", deletarTarefa);
 
 module.exports = router;
